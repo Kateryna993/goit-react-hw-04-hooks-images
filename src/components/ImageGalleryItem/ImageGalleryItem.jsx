@@ -5,8 +5,8 @@ import style from './ImageGalleryItem.module.css';
 const ImageGalleryItem = ({ images, onClickImage }) => {
   return (
     <>
-      {images.map(({ id, webformatURL, largeImageURL }) => (
-        <li key={id} className={style.ImageGalleryItem}>
+      {images.map(({ id, webformatURL, largeImageURL }, index) => (
+        <li key={index} className={style.ImageGalleryItem}>
           <img
             className={style.ImageGalleryItemImage}
             src={webformatURL}

@@ -45,22 +45,34 @@ export default function ImageFinderApp() {
           }
         })
         .catch(error => setError(error))
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          if (currentPage > 1) {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: 'smooth',
+            });
+          }
+        });
     }
 
     onFetchImages();
   }, [currentPage, error, searchQuery]);
 
   const onLoadMore = () => {
-    setCurrentPage(prevCurrentPage => prevCurrentPage + 1);
+    setCurrentPage(prevPage => prevPage + 1);
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
-    }, 300);
+    // scrollContoller();
   };
+
+  // const scrollContoller = (currentPage) => {
+  //   if (currentPage >= 1) {
+  //     window.scrollTo({
+  //       top: document.documentElement.scrollHeight,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // };
 
   const toggleModal = () => {
     setShowModal(!showModal);
